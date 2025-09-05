@@ -1,0 +1,18 @@
+set.seed(100)
+
+#gerar variáveis
+
+v1b=rbinom(1000,19,0.5)
+v2b=rbinom(1000,10,0.25)
+
+#Gerar gráfico
+
+plot(v1b,v2b,pch=19)
+sunflowerplot(v1b,v2b,
+              seg.col="tomato",
+              ylim=c(0,30),
+              xlim=c(0,30))
+points(c(5.5),cex=2, pch=19)
+
+require(hexbin)
+plot(hexbin(v1b,v2b))
