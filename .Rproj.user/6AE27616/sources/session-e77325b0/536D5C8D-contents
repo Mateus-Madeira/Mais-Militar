@@ -15,4 +15,4 @@ sunflowerplot(v1b,v2b,
 points(c(5.5),cex=2, pch=19)
 
 require(hexbin)
-plot(hexbin(v1b,v2b))
+plot(hexbin)
