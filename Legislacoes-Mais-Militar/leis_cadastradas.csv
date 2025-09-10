@@ -1,2 +1,26 @@
 "id","nome_lei","professor","data_gravacao","url_lei","status","ultima_verificacao"
-1,"Código Penal","Daiane Soares",2025-07-29,"https://www.planalto.gov.br/ccivil_03/decreto-lei/del2848compilado.htm","Atualizado",2025-09-09
+1,"Código Penal","Daiane Soares",2024-04-17,"https://www.planalto.gov.br/ccivil_03/decreto-lei/del2848compilado.htm","Necessita Atualização",2025-09-10
+2,"Maria da Penha","Daiane Soares",2025-05-21,"https://www.planalto.gov.br/ccivil_03/_ato2004-2006/2006/lei/l11340.htm","Atualizado",2025-09-10
+3,"Lei das Contravenções Penais","Daiane Soares",2025-04-19,"https://www.planalto.gov.br/ccivil_03/decreto-lei/del3688.htm","Atualizado",2025-09-10
+4,"Lei 10.048/2000","Daiane Soares",2025-04-19,"https://www.planalto.gov.br/ccivil_03/leis/l10048.htm","Atualizado",2025-09-10
+5,"Lei de Introdução às normas do Direito Brasileiro","Daiane Soares",2025-04-19,"https://www.planalto.gov.br/ccivil_03/decreto-lei/del4657compilado.htm","Atualizado",2025-09-10
+6,"Lei 8.078/1990","Daiane Soares",2025-04-19,"https://www.planalto.gov.br/ccivil_03/leis/l8078compilado.htm","Atualizado",2025-09-10
+7,"Código de Trânsito Brasileiro","Daiane Soares",2025-04-19,"https://www.planalto.gov.br/ccivil_03/leis/l9503compilado.htm","Necessita Atualização",2025-09-10
+8,"Código Policial Militar","Daiane",2025-04-05,"https://www.legislacao.pr.gov.br/legislacao/exibirAto.do?action=iniciarProcesso&codAto=14555&codItemAto=157326","Erro",2025-09-10
+9,"Lei 7.716/1989","Daiane Soares",2025-04-05,"https://www.planalto.gov.br/ccivil_03/leis/l7716.htm","Atualizado",2025-09-10
+10,"Lei 12.288/2010","Daiane Soares",2025-04-05,"https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2010/lei/l12288.htm","Atualizado",2025-09-10
+11,"Lei orgânica das Polícias Militares","Daiane Soares",2025-03-30,"https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/lei/l14751.htm","Atualizado",2025-09-10
+12,"Decreto 5.075/1998","Daiane Soares",2025-03-30,"https://leisestaduais.com.br/pr/decreto-n-5075-1998-parana-aprovacao-do-regulamento-de-etica-profissional-dos-militares-estaduais-integrantes-","Erro",2025-09-10
+13,"Decreto 11.868/2018","Daiane Soares",2025-03-30,"https://www.legislacao.pr.gov.br/legislacao/pesquisarAto.do?action=exibir&codAto=212032","Erro",2025-09-10
+14,"Lei de Licitações Lei 14133/2021","Daiane Soares",2024-08-28,"https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2021/lei/l14133.htm","Necessita Atualização",2025-09-10
+15,"Lei 8.072/1990: Crimes Hediondos","Daiane Soares",2025-05-10,"https://www.planalto.gov.br/ccivil_03/leis/l8072.htm","Necessita Atualização",2025-09-10
+16,"Lei 12.608/2012: Defesa Civil","Daiane Soares",2025-04-24,"https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2012/lei/l12608.htm","Atualizado",2025-09-10
+17,"Lei 13.675/2018: SUSP","Daiane Soares",2024-04-24,"https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/L13675.htm","Necessita Atualização",2025-09-10
+18,"Lei 12.527/2011: Lei de Acesso a Informação","Daiane Soares",2024-04-16,"https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2011/lei/l12527.htm","Necessita Atualização",2025-09-10
+19,"DECRETO Nº 11.615, DE 21 DE JULHO DE 2023","Daiane Soares",2024-04-11,"https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/decreto/d11615.htm","Necessita Atualização",2025-09-10
+20,"Lei 9.296/1996: Interceptação Telefônica","Daiane Soares",2024-04-10,"https://www.planalto.gov.br/ccivil_03/leis/l9296.htm","Atualizado",2025-09-10
+21,"Lei 12.850/2013: Organizações Criminosas","Daiane Soares",2024-04-10,"https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2013/lei/l12850.htm","Atualizado",2025-09-10
+22,"Lei 9.455/1997: Crimes de Tortura","Daiane Soares",2024-04-10,"https://www.planalto.gov.br/ccivil_03/leis/l9455.htm","Atualizado",2025-09-10
+23,"Lei 9.605/ 1998: Crimes Ambientais","Daiane Soares",2024-04-10,"https://www.planalto.gov.br/ccivil_03/leis/l9605.htm","Necessita Atualização",2025-09-10
+24,"Direito Processual Penal","Daiane Soares",2024-04-10,"https://www.planalto.gov.br/ccivil_03/decreto-lei/del3689.htm","Necessita Atualização",2025-09-10
+25,"LEP Lei 7.210/1984","Daiane Soares",2023-09-05,"https://www.planalto.gov.br/ccivil_03/leis/l7210.htm","Necessita Atualização",2025-09-10

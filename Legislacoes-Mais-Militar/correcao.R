@@ -1,0 +1,35 @@
+# --- SCRIPT DE CORREÇÃO PARA leis_cadastradas.csv ---
+
+# Nome do ficheiro (certifique-se que o R está na pasta certa)
+ficheiro_csv <- "leis_cadastradas.csv"
+
+# URL correta e limpa
+url_correta <- "https://www.planalto.gov.br/ccivil_03/_ato2004-2006/2006/lei/l11340.htm"
+
+# Tenta ler o ficheiro
+if (file.exists(ficheiro_csv)) {
+  # Lê os dados
+  dados <- read.csv(ficheiro_csv, stringsAsFactors = FALSE)
+  
+  # Encontra a linha problemática (vamos usar o ID 2, como no seu exemplo)
+  linha_problematica <- which(dados$id == 2)
+  
+  if (length(linha_problematica) > 0) {
+    cat("Encontrei a linha com ID 2. A URL antiga era:\n'", dados$url_lei[linha_problematica], "'\n")
+    
+    # Força a substituição pela URL correta
+    dados$url_lei[linha_problematica] <- url_correta
+    
+    # Guarda o ficheiro de volta, sobrescrevendo o antigo
+    write.csv(dados, ficheiro_csv, row.names = FALSE, quote = TRUE)
+    
+    cat("\nSUCESSO! O ficheiro foi corrigido.\n")
+    cat("A nova URL é:\n'", dados$url_lei[linha_problematica], "'\n")
+    
+  } else {
+    cat("ERRO: Não encontrei uma linha com id = 2 no seu ficheiro.\n")
+  }
+  
+} else {
+  cat("ERRO: Não encontrei o ficheiro 'leis_cadastradas.csv' na pasta de trabalho atual.\n")
+}
