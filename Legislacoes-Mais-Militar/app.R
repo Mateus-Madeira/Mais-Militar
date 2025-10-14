@@ -91,7 +91,7 @@ verificar_atualizacao_lei <- function(url_base, data_gravacao) {
   message("Iniciando verificação para: ", url_limpa)
   
   if (!grepl("planalto.gov.br", url_limpa)) {
-    message("   - ERRO: A URL não é do site planalto.gov.br. Verificação não suportada.")
+    message("   - ERRO: A URL não é do site planalto.gov.br. Verificação não suportada.")
     return("Erro")
   }
   
@@ -100,41 +100,49 @@ verificar_atualizacao_lei <- function(url_base, data_gravacao) {
   
   ano_gravacao <- year(data_gravacao)
   necessita_atualizacao <- FALSE
-  seletor_css <- "a[href*='/Lei/'], a[href*='/Decreto/']"
-  links_alteracao <- pagina_base %>% html_nodes(seletor_css)
+  
+  # --- MUDANÇA FINAL E MAIS ROBUSTA ---
+  # Seletor CSS que busca por qualquer link que vá para uma página de Lei ou Decreto.
+  # Esta é a abordagem mais ampla e segura.
+  seletor_css <- "a[href*='/lei/'], a[href*='/Lei/'], a[href*='/decreto/'], a[href*='/Decreto/']"
+  links_alteracao <- pagina_base %>% html_nodes(css = seletor_css)
   
   for (link in links_alteracao) {
-    href <- html_attr(link, "href"); texto_link <- str_squish(html_text(link))
-    ano_alteracao_match <- str_extract(texto_link, "\\b(20\\d{2})\\b")
+    href <- html_attr(link, "href")
+    # Para extrair o ano, pegamos o texto do próprio link e também do nó "pai" (o parágrafo <p> inteiro).
+    # Isso captura casos onde o ano está fora do texto do link.
+    texto_contexto <- link %>% xml_parent() %>% html_text() %>% str_squish()
+    ano_alteracao_match <- str_extract(texto_contexto, "\\b(20\\d{2})\\b") # Busca por anos 20xx
+    
+    # Se não encontrar ano 20xx, busca qualquer ano de 4 dígitos para leis mais antigas.
+    if (is.na(ano_alteracao_match)) {
+      ano_alteracao_match <- str_extract(texto_contexto, "\\b(\\d{4})\\b")
+    }
+    
     if (!is.na(ano_alteracao_match)) {
       ano_alteracao <- as.numeric(ano_alteracao_match)
+      
+      # Compara o ano da alteração com o ano da gravação da aula
       if (ano_alteracao >= ano_gravacao) {
-        url_absoluta <- xml2::url_absolute(href, url_limpa); Sys.sleep(0.5)
+        message(sprintf("   - Link suspeito encontrado para o ano %d. Verificando a data exata...", ano_alteracao))
+        url_absoluta <- xml2::url_absolute(href, url_limpa)
+        Sys.sleep(0.5) # Pausa para não sobrecarregar o servidor
         pagina_alteracao <- safe_read_html(url_absoluta)
         if (is.null(pagina_alteracao)) next
-        texto_data_node <- NA
-        if (grepl("/Lei/", href, ignore.case = TRUE)) {
-          message("   - (Tipo Lei) Usando busca por link 'Viw_Identificacao'...")
-          xpath_query_lei <- "//a[contains(@href, 'Viw_Identificacao')]"
-          texto_data_node <- pagina_alteracao %>% html_node(xpath = xpath_query_lei)
-        } else if (grepl("/Decreto/", href, ignore.case = TRUE)) {
-          message("   - (Tipo Decreto) Usando busca XPath por parágrafo...")
-          xpath_query_decreto <- "//p[translate(@align, 'CENTER', 'center')='center' and (contains(., 'DECRETO N'))]"
-          texto_data_node <- pagina_alteracao %>% html_node(xpath = xpath_query_decreto)
-        }
+        
+        # Tenta extrair o texto completo do cabeçalho da lei/decreto
+        texto_data_node <- pagina_alteracao %>% html_node(xpath = "//p[contains(., 'DECRETO Nº') or contains(., 'LEI Nº')]")
+        
         if (!is.na(texto_data_node)) {
           texto_data <- html_text(texto_data_node)
-          message(sprintf("   - Título encontrado! Conteúdo: '%s'", str_squish(texto_data)))
           match_data <- str_match(texto_data, "(\\d{1,2} DE .*? DE \\d{4})")
           if (!is.na(match_data[1, 2])) {
             data_publicacao <- parse_portuguese_date(match_data[1, 2])
             if (!is.na(data_publicacao) && data_publicacao > data_gravacao) {
-              message("   *** ATUALIZAÇÃO NECESSÁRIA ENCONTRADA! ***")
+              message(sprintf("   *** ATUALIZAÇÃO NECESSÁRIA! Data da norma: %s > Data da gravação: %s ***", data_publicacao, data_gravacao))
               necessita_atualizacao <- TRUE; break
             }
           }
-        } else {
-          message("   - ERRO: A consulta específica para este tipo de documento não encontrou o título.")
         }
       }
     }
@@ -143,7 +151,6 @@ verificar_atualizacao_lei <- function(url_base, data_gravacao) {
   message("Verificação concluída. Status final: ", status_final)
   return(status_final)
 }
-
 
 # --- 4. INTERFACE DO USUÁRIO (UI) ---
 

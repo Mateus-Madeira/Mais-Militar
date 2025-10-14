@@ -1,0 +1,13 @@
+arquivo <- readLines("QUESTOESGM.txt")
+arquivo2 <- iconv(arquivo, from="", to="utf-8")
+#install.packages("wordcloud")
+#install.packages("tm")
+require("wordcloud")
+require("tm")
+doc <- Corpus(VectorSource(arquivo2))
+doc <- tm_map(doc,removePunctuation)
+doc <- tm_map(doc,tolower)
+doc <- tm_map(doc,removeWords,c(stopwords("portuguese"),"desse","pra","ainda","ver","sobre","vão","dar","nessa","estar","hoje","atenção","parte","bom","pena","link","moro","vibra","entrar","perder","cinco","vale","dia","oportunidade","nada","outra","conseguir","quer","falar","extremamente","todo","dizer","pro","faz","lá","cara","fala","falando","aí","bacana","olha","pô","claro","pessoal","vamos","beleza","gente","tá","pode","então","ser","aqui","bem","né","assim","só","tudo","mais","também","porque","muito","está","vai","tem","têm","tão","coisa","fazer","fazer","fiz","fui","ser","sou","era","ter","tenho","teve","terei","teria"))
+wordcloud(doc, col=c("gray","black","orange","red"), rot.per=-1, random.order=FALSE, scale=c(5,0.7))
+#wordcloud(doc, col=rainbow(5))
+
